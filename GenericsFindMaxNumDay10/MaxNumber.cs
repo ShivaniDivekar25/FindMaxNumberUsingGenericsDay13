@@ -79,7 +79,7 @@ namespace GenericsFindMaxNumDay10
                  Console.WriteLine("The maximum number is : " + c);
              }
          }*/
-        // Refactor -1
+        // Refactor -1 for UC3
         public static T GenericMaxNumber(T first, T second, T third)          //Creating method to find maximum  by using Generic method
         {
 
@@ -96,7 +96,7 @@ namespace GenericsFindMaxNumDay10
                 return third;
             }
         }
-        // Refactor -2
+        // Refactor -2 for UC3
         public void TestMaximum()
         {
             T res = GenericMaxNumber(first, second, third);

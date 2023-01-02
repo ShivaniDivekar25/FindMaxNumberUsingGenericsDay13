@@ -6,17 +6,17 @@
         {
             Console.WriteLine("Welcome to find maximum number using Generics Program");
             Console.WriteLine("Please enter an option");
-            Console.WriteLine("1:Find integer maximum number\n2:Find float maximum number\n3:Find maximum for string\n4:Find max using Generic Method\n 5:Find max using Generic class");     
+            Console.WriteLine("1:Find integer maximum number\n2:Find float maximum number\n3:Find maximum for string\n4:Find max using Generic Method\n5:Find max using Generic class\n6:Find max for mutliple parameter");     
             int option = Convert.ToInt32(Console.ReadLine());
-            switch (option)             //Calling different methods using switch case for UC3 refacator1 and refactor2
+            switch (option)             //Calling different methods using switch case for UC3 refacator1, refactor2, UC4
             {
-                case 1:
+                case 1:     //UC1
                    // MaxNumber.maxNumber();          //Calling method for integer
                     break;
-                case 2:
+                case 2:     //UC2
                     //MaxNumber.maxNumber1();         //calling method for float
                     break;
-                case 3:
+                case 3:     //UC3
                     //MaxNumber.maxNumber2();         //Calling method for string
                     break;
                 case 4:
@@ -45,8 +45,8 @@
                         Console.WriteLine("Enter Third string");
                         string thirdString = Convert.ToString(Console.ReadLine());
                         Console.WriteLine("Max Value:" + FindMax<string>.GenericMaxNumber(firstString, secondString, thirdString));
-                        break;
                     }
+                    break;    
                 case 5:
                     {  //RefCTOR-2 for UC3
                         //INTEGER
@@ -75,9 +75,45 @@
                         Console.WriteLine("Enter Third string");
                         string thirdString = Convert.ToString(Console.ReadLine());
                         FindMax<string> obj3 = new FindMax<string>(firstString, secondString, thirdString);
+
                         obj3.TestMaximum();
-                        break;
                     }
+                    break;
+                    
+                case 6:
+                    {    //UC-4
+                        //INTEGER
+                        Console.WriteLine("Enter the count of integer number");
+                        int count = Convert.ToInt32(Console.ReadLine());
+                        int[] numbersInt = new int[count];
+                        for (int i = 0; i < count; i++)
+                        {
+                            numbersInt[i] = Convert.ToInt32(Console.ReadLine());
+                        }
+                        FindMax<int> obj = new FindMax<int>(numbersInt);
+                        obj.MaxMethod();
+                        //FLOATS
+                        Console.WriteLine("Enter the count of float number");
+                        int count1 = Convert.ToInt32(Console.ReadLine());
+                        float[] numbersFloat = new float[count1];
+                        for (int i = 0; i < count1; i++)
+                        {
+                            numbersFloat[i] = Convert.ToSingle(Console.ReadLine());
+                        }
+                        FindMax<float> obj2 = new FindMax<float>(numbersFloat);
+                        obj2.MaxMethod();
+                        //STRING
+                        Console.WriteLine("Enter the count of string");
+                        int count2 = Convert.ToInt32(Console.ReadLine());
+                        string[] numbersString = new string[count2];
+                        for (int i = 0; i < count2; i++)
+                        {
+                            numbersString[i] = Convert.ToString(Console.ReadLine());
+                        }
+                        FindMax<string> obj3 = new FindMax<string>(numbersString);
+                        obj3.MaxMethod();
+                    }
+                    break;
                 default:
                     Console.WriteLine("Please enter correct option");
                     break;
