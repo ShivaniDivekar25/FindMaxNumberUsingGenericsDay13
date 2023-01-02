@@ -6,61 +6,123 @@ using System.Threading.Tasks;
 
 namespace GenericsFindMaxNumDay10
 {
-    internal class MaxNumber        //Creating class
+    internal class FindMax<T> where T : IComparable
     {
-        public static void maxNumber()          //Creating method to find maximum integer number using CompareTo method
+
+        //Creating class
+
+        public T first, second, third;
+        public T[] value;
+        public FindMax(T first, T second, T third)
         {
-            int a = 45;
-            int b = 60;
-            int c = 20;
-            if ((a.CompareTo(b) > 0) && (a.CompareTo(c) > 0))
+            this.first = first;
+            this.second = second;
+            this.third = third;
+        }
+        //UC4
+        public FindMax(T[] value)
+        {
+            this.value = value;
+        }
+    
+        /* public static void maxNumber()          //Creating method to find maximum integer number using CompareTo method
+         {
+             int a = 45;
+             int b = 60;
+             int c = 20;
+             if ((a.CompareTo(b) > 0) && (a.CompareTo(c) > 0))
+             {
+                 Console.WriteLine("The maximum number is:" + a);
+             }
+             else if ((b.CompareTo(a) > 0) && (b.CompareTo(c) > 0))
+             {
+                 Console.WriteLine("The maximum number is: " + b);
+             }
+             else
+             {
+                 Console.WriteLine("The maximum number is : " + c);
+             }
+         }
+         public static void maxNumber1()         //Creating method to find maximum float number using CompareTo method
+         {
+             float a = 11.34f;
+             float b = 45.96f;
+             float c = 75.74f;
+             if ((a.CompareTo(b) > 0) && (a.CompareTo(c) > 0))
+             {
+                 Console.WriteLine("The maximum number is:" + a);
+             }
+             else if ((b.CompareTo(a) > 0) && (b.CompareTo(c) > 0))
+             {
+                 Console.WriteLine("The maximum number is: " + b);
+             }
+             else
+             {
+                 Console.WriteLine("The maximum number is : " + c);
+             }
+         }
+         public static void maxNumber2()         //Creating method to find maximum for string using ComapreTo method
+         {
+             string a = "Apple";
+             string b = "Banana";
+             string c = "Pear";
+             if ((a.CompareTo(b) > 0) && (a.CompareTo(c) > 0))
+             {
+                 Console.WriteLine("The maximum number is:" + a);
+             }
+             else if ((b.CompareTo(a) > 0) && (b.CompareTo(c) > 0))
+             {
+                 Console.WriteLine("The maximum number is: " + b);
+             }
+             else
+             {
+                 Console.WriteLine("The maximum number is : " + c);
+             }
+         }*/
+        // Refactor -1
+        public static T GenericMaxNumber(T first, T second, T third)          //Creating method to find maximum  by using Generic method
+        {
+
+            if ((first.CompareTo(second) > 0) && (first.CompareTo(third) > 0))
             {
-                Console.WriteLine("The maximum number is:" + a);
+                return first;
             }
-            else if ((b.CompareTo(a) > 0) && (b.CompareTo(c) > 0))
+            else if ((second.CompareTo(first) > 0) && (second.CompareTo(third) > 0))
             {
-                Console.WriteLine("The maximum number is: " + b);
+                return second;
             }
             else
             {
-                Console.WriteLine("The maximum number is : " + c);
+                return third;
             }
         }
-        public static void maxNumber1()         //Creating method to find maximum float number using CompareTo method
+        // Refactor -2
+        public void TestMaximum()
         {
-            float a = 11.34f;
-            float b = 45.96f;
-            float c = 75.74f;
-            if ((a.CompareTo(b) > 0) && (a.CompareTo(c) > 0))
-            {
-                Console.WriteLine("The maximum number is:" + a);
-            }
-            else if ((b.CompareTo(a) > 0) && (b.CompareTo(c) > 0))
-            {
-                Console.WriteLine("The maximum number is: " + b);
-            }
-            else
-            {
-                Console.WriteLine("The maximum number is : " + c);
-            }
+            T res = GenericMaxNumber(first, second, third);
+            Console.WriteLine("Max:" + res);
         }
-        public static void maxNumber2()         //Creating method to find maximum for string using ComapreTo method
+
+        public T[] Sort(T[] values)
         {
-            string a = "Apple";
-            string b = "Banana";
-            string c = "Pear";
-            if ((a.CompareTo(b) > 0) && (a.CompareTo(c) > 0))
-            {
-                Console.WriteLine("The maximum number is:" + a);
-            }
-            else if ((b.CompareTo(a) > 0) && (b.CompareTo(c) > 0))
-            {
-                Console.WriteLine("The maximum number is: " + b);
-            }
-            else
-            {
-                Console.WriteLine("The maximum number is : " + c);
-            }
+            Array.Sort(values);
+            return values;
+        }
+        public T MaxValue(params T[] values)
+        {
+            var sorted_values = Sort(values);
+            return sorted_values[^1];
+        }
+        public T MaxMethod()
+        {
+            var max = MaxValue(this.value);
+            return max;
+        }
+        public void PrintMaxValue()
+        {
+            var max = MaxValue(this.value);
+            Console.WriteLine("Maximum value is :" + max);
+
         }
     }
 }
